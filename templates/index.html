@@ -1,91 +1,63 @@
-<html>
-	<head>
-		<title>{{page_name}}</title>
-		<link href='https://raw.github.com/necolas/normalize.css/master/normalize.css' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-		<style>
-			* {
-				font-family: 'Droid Sans', 'Helvetica', 'Arial', sans-serif;
-			}
-			html {
-				background:#fafafa;
-			}
-			body {
-				margin: 0 auto;
-				padding: 50px;
-				width:900px;
-				background:#fff;
-			}
-			tr, td{
-				border:1px solid #f0f0f0;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>Persona: Wildcard | Monster Manager</h1>
-		<hr>
-		<h2>Official Monsters</h2>
+<h2>Official Monsters</h2>
+<table>
+	<tr>
+		<td>Name</td>
+		<td>description</td>
+		<td>level</td>
+		<td>hit points</td>
+		<td>skill points</td>
+		<td>resistances</td>
+		<td>skills</td>
+		<td>natural attacks</td>
+	</tr>
+{{#monsters}}
+	<tr>
+		<td><a href="/monsters/{{_id}}/">{{name}}</a></td>
+		<td>{{description}}</td>
+		<td>{{level}}</td>
+		<td>{{hit_points}}</td>
+		<td>{{skill_points}}</td>
+		<td>
+			<table>
+			{{#resistances}}
+				<tr>
+					<td>{{attribute}}</td>
+					<td>{{resistance}}</td>
+				<tr>
+			{{/resistances}}
+			</table>
+		</td>
+		<td>
+			<ul>
+			{{#skills}}
+			<li>{{skill}}</li>
+			{{/skills}}
+			</ul>
+		</td>
+		<td>
 		<table>
 			<tr>
-				<td>Name</td>
-				<td>description</td>
-				<td>level</td>
-				<td>hit points</td>
-				<td>skill points</td>
-				<td>resistances</td>
-				<td>skills</td>
-				<td>natural attacks</td>
+				<td>name</td>
+				<td>cost</td>
+				<td>hits</td>
+				<td>damage</td>
+				<td>ailment</td>
+				<td>critical</td>
+				<td>notes</td>
 			</tr>
-		{{#monsters}}
+			{{#natural_attacks}}
 			<tr>
 				<td>{{name}}</td>
-				<td>{{description}}</td>
-				<td>{{level}}</td>
-				<td>{{hit_points}}</td>
-				<td>{{skill_points}}</td>
-				<td>
-					<table>
-					{{#resistances}}
-						<tr>
-							<td>{{attribute}}</td>
-							<td>{{resistance}}</td>
-						<tr>
-					{{/resistances}}
-					</table>
-				</td>
-				<td>
-					<ul>
-					{{#skills}}
-					<li>{{skill}}</li>
-					{{/skills}}
-					</ul>
-				</td>
-				<td>
-				<table>
-					<tr>
-						<td>name</td>
-						<td>cost</td>
-						<td>hits</td>
-						<td>damage</td>
-						<td>ailment</td>
-						<td>critical</td>
-						<td>notes</td>
-					</tr>
-					{{#natural_attacks}}
-					<tr>
-						<td>{{name}}</td>
-						<td>{{cost}}</td>
-						<td>{{hits}}</td>
-						<td>{{damage}}</td>
-						<td>{{ailment}}</td>
-						<td>{{critical}}</td>
-						<td>{{notes}}</td>
-					</tr>
-				{{/natural_attacks}}
-				</table>
-				</td>
+				<td>{{cost}}</td>
+				<td>{{hits}}</td>
+				<td>{{damage}}</td>
+				<td>{{ailment}}</td>
+				<td>{{critical}}</td>
+				<td>{{notes}}</td>
 			</tr>
-		{{/monsters}}
+		{{/natural_attacks}}
 		</table>
-	</body>
-</html>
+		</td>
+	</tr>
+{{/monsters}}
+</table>
