@@ -1,1 +1,59 @@
 <h2>{{name}}</h2>
+<p>{{description}}</p>
+<br>
+
+<h3>Base Information</h3>
+<table>
+	<tr>
+		<td>level</td>
+		<td>{{level}}</td>
+	</tr>
+	<tr>
+		<td>hit points</td>
+		<td>{{hit_points}}</td>
+	</tr>
+	<tr>
+		<td>skill points</td>
+		<td>{{skill_points}}</td>
+	<tr>
+</table>
+<br>
+
+<h3>Resistances</h3>
+<table>
+	{{#resistances}}
+	<tr>
+		<td>{{attribute}}</td>
+		<td>{{resistance}}</td>
+	</tr>
+	{{/resistances}}
+</table>
+<br>
+
+<h3>Skills</h3>
+<ul>
+{{#skills}}
+	<li>{{skill}}</li>
+{{/skills}}
+
+<h3>Natural Attacks</h3>
+{{#natural_attacks}}
+	<h4>{{name}}</h4>
+	<table>
+		<tr>
+			<td>cost</td>
+			<td>hits</td>
+			<td>damage</td>
+			<td>critical</td>
+		</tr>
+		<tr>
+			<td>{{cost}}</td>
+			<td>{{hits}}</td>
+			<td>{{damage}}</td>
+			<td>{{critical}}</td>
+	</table>
+	<h5>Ailment</h5>
+	<p>{{ailment}}</p>
+	<h5>Description</h5>
+	<p>{{description}}</p>
+{{/natural_attacks}}

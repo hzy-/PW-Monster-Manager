@@ -1,10 +1,11 @@
 from bottle import route, run, debug
 from db import connect
 from pystache import render
+from bson.objectid import ObjectId
 
 #generale stuff
 base_pagename = 'Persona: Wildcard | Monster Manager'
-db = connect().monsters
+db = connect()
 
 def generate_template(template_name):
 	header = open('templates/header.html').read()
@@ -15,7 +16,7 @@ def generate_template(template_name):
 
 @route('/')
 def home():
-	monsters = db.find({'official': True})
+	monsters = db.monsters.find({'official': True})
 
 	#pystache up in this
 	t = generate_template('index')
@@ -25,11 +26,23 @@ def home():
 
 @route('/monsters/:id/')
 def single_monster(id):
-	monster = db.find_one({'_id': id})
-
+	monster = db.monsters.find_one({'_id': ObjectId(id)})
+	print id
 	t = generate_template('single_monster')
-	page_name = base_pagename+' / Monster / '+monster['_id'] #['name']
-	c = {'monster': monster, 'page_name': page_name}
+	page_name = base_pagename+' / Monster / '+monster['name'] #['name']
+	c = {
+		#all that monster magic
+		'name': monster['name'],
+		'level': monster['level'],
+		'hit_points': monster['hit_points'],
+		'skill_points': monster['skill_points'],
+		'resistances': monster['resistances'],
+		'skills': monster['skills'],
+		'natural_attacks': monster['natural_attacks'],
+		'description': monster['description'],
+		#and the other stuff
+		'page_name': page_name
+		}
 	r = render(t, c)
 	return r
 
