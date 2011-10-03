@@ -1,6 +1,5 @@
 from bottle import route, run, debug
 from db import connect
-from Cheetah.Template import Template
 import pystache
 
 @route('/')
