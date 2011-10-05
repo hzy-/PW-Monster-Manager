@@ -5,7 +5,6 @@ from db import connect
 from pystache import render
 from bson.objectid import ObjectId
 from functions import *
-from lxml.html.clean import Cleaner
 
 #generale stuff
 base_pagename = 'Persona: Wildcard | Monster Manager'
@@ -28,7 +27,7 @@ def home():
 
 @get('/monsters/new/')
 def new_monster_form():
-	t = generate_template('single_monster')
+	t = generate_template('new_monster')
 	c = {'page_name': base_pagename + ' / New Monster'}
 	r = render(t, c)
 	return r

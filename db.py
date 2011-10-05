@@ -1,5 +1,5 @@
 #imports up in this
-from pymongo import Connection
+from pymongo import Connection, ASCENDING, DESCENDING
 
 # connect to db
 def connect():
