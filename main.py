@@ -1,48 +1,79 @@
-from bottle import route, run, debug
+#! /usr/bin/python
+
+from bottle import route, run, request, get, post, put, delete, debug, redirect, static_file
 from db import connect
 from pystache import render
 from bson.objectid import ObjectId
+from functions import *
+from lxml.html.clean import Cleaner
 
 #generale stuff
 base_pagename = 'Persona: Wildcard | Monster Manager'
 db = connect()
 
-def generate_template(template_name):
-	header = open('templates/header.html').read()
-	footer = open('templates/footer.html').read()
-	template = open('templates/'+template_name+'.html').read()
+#on to the routing
+@route('/static/:path#.+#')
+def serve_static(path):
+	return static_file(path, root='static')
 
-	return header+template+footer
 
-@route('/')
+@get('/')
 def home():
 	monsters = db.monsters.find({'official': True})
-
 	#pystache up in this
 	t = generate_template('index')
 	c = {'monsters': monsters, 'page_name': base_pagename}
 	r = render(t, c)
 	return r
 
-@route('/monsters/:id/')
-def single_monster(id):
-	monster = db.monsters.find_one({'_id': ObjectId(id)})
-	print id
+@get('/monsters/new/')
+def new_monster_form():
 	t = generate_template('single_monster')
-	page_name = base_pagename+' / Monster / '+monster['name'] #['name']
-	c = {
-		#all that monster magic
-		'name': monster['name'],
-		'level': monster['level'],
-		'hit_points': monster['hit_points'],
-		'skill_points': monster['skill_points'],
-		'resistances': monster['resistances'],
-		'skills': monster['skills'],
-		'natural_attacks': monster['natural_attacks'],
-		'description': monster['description'],
-		#and the other stuff
-		'page_name': page_name
-		}
+	c = {'page_name': base_pagename + ' / New Monster'}
+	r = render(t, c)
+	return r
+
+@get('/monsters/:id/')
+def view_monster(id):
+	monster = db.monsters.find_one({'_id': ObjectId(id)})
+	if monster['name'] is not None:
+		t = generate_template('single_monster')
+		page_name = base_pagename + ' / Monster / ' + monster['name']
+		c = {
+			#all that monster magic
+			'name': monster['name'],
+			'level': monster['level'],
+			'hit_points': monster['hit_points'],
+			'skill_points': monster['skill_points'],
+			'resistances': monster['resistances'],
+			'skills': monster['skills'],
+			'natural_attacks': monster['natural_attacks'],
+			'description': monster['description'],
+			#and the other stuff
+			'page_name': page_name
+			}
+		r = render(t, c)
+		return r
+	else:
+		return 'monster not found :c'
+
+@delete('/monsters/:id/')
+def delete_monster(id):
+	monster = db.monsters.find_one({'_id': ObjectId(id)})
+	if monster['name'] is not None:
+		db.monsters.remove(monster['_id'])
+		return 'success!'
+
+@post('/monsters/')
+def create_monster():
+	return 'hi'
+
+	
+
+@get('/login/')
+def login_form():
+	t = generate_template('login')
+	c = {'page_name': base_pagename+' / Login'}
 	r = render(t, c)
 	return r
 

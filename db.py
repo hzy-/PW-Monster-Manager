@@ -8,13 +8,11 @@ def connect():
 	db = connection.monster_manager
 	return db
 
-
-
-# test
+# test / example data
 monsters = connect().monsters
 
-name = 'evil warlock teacher'
-description = 'this is a despicable fiend that commonly dwells in school libraries'
+name = '<em><strong>evil title</strong></em>'
+description = '<p style="font-size:50px;">this is a despicable fiend that commonly dwells in school libraries</p>'
 level = 4
 hit_points = 325
 skill_points = 48478
