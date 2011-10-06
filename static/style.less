@@ -24,3 +24,43 @@ header {
 	}
 	border-bottom:1px solid darken(@grey, 20%);
 }
+
+// new monster page
+#new_monster_form {
+	width: 700px;
+	margin: 0 auto;
+	input{
+		height:30px;
+		margin:0 0 5px 0;
+	}
+	label {
+		font-size:11pt;
+		margin:10px 0 2px 0;
+		display:block;
+	}
+	hr {
+		margin:40px 0 40px 0;
+	}
+	a.delete_x {
+		color:#900;
+		text-decoration:none;
+		&:hover {
+			color:#c00;
+		}
+		&:active {
+			color:#f00;
+		}
+	}
+	.natural_attack {
+		border-bottom:1px solid darken(@grey, 15%);
+		margin:0 0 20px 0;
+		padding:0 0 20px 0;
+		.col1, .col2 {
+			width:50% - 1px;
+			display:inline-block;
+			* {
+				width:100%;
+			}
+		}
+	}
+}

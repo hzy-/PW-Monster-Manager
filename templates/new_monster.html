@@ -1,21 +1,21 @@
 <h2>New Monster</h2>
-<form method='post' action='/monsters/'>
+<form id='new_monster_form' method='post' action='#'>
 	<label>Name</label>
 		<input type='text' name='name'>
 	<label>Description</label>
 		<textarea name='description'></textarea>
 	<label>Level</label>
-		<input name='level' type='number'>
+		<input name='level' type='number' max='100' min='0' step='1'>
 	<label>Hit Points</label>
-		<input name='hit_points' type='number'>
+		<input name='hit_points' type='number' min='0' step='1'>
 	<label>Skill Points</label>
-		<input name='skill_points' type='number'>
+		<input name='skill_points' type='number' min='0' step='1'>
 	<hr>
 
 	<div id='resistances_form'>
 		<h3>Resistances</h3>
 		<div class='resistance'>
-			<select name='resistance_attribute' placeholder='Attribute'>
+			<select name='resistance_attribute' value='Attribute'>
 				<option>Physical</option>
 				<option>Fire</option>
 				<option>Ice</option>
@@ -24,7 +24,7 @@
 				<option>Light</option>
 				<option>Dark</option>
 			</select>
-			<select name='resistance_resistance' placeholder='Resistance'>
+			<select name='resistance_resistance' value='Resistance'>
 				<option>Weak</option>
 				<option>Resist</option>
 				<option>Null</option>
@@ -32,36 +32,46 @@
 				<option>Reflect</option>
 				<option>N/A</option>
 			</select>
+			<a class='delete_x' href='#'>x</a>
 		</div>
-		<a href='#'>add another...</a>
+		<a href='#' id='resistance_add'>add another...</a>
 	</div>
 	<hr>
 
 	<div id='skills_form'>
 		<h3>Skills</h3>
-		<input type='text' name='skill'>
-		<a href='#'>add another...</a>
+		<div class='skill'>
+			<input class='skill_input' type='text' name='skill'>
+			<a class='delete_x' href='#'>x</a>
+		</div>
+		<a href='#' id='skill_add'>add another...</a>
 	</div>
 	<hr>
 
 	<div id='natural_attacks_form'>
 		<h3>Natural Attacks</h3>
 		<div class='natural_attack'>
-			<label>Name</label>
-				<input type='text' name='natural_attack_name'>
-			<label>Cost</label>
-				<input type='number' name='natural_attack_cost'>
-			<label>Hits</label>
-				<input type='number' name='natural_attack_hits'>
-			<label>Damage</label>
-				<input type='number' name='natural_attack_damage'>
-			<label>Critical</label>
-				<input type='number' name='natural_attack_critical'>
-			<label>Ailment</label>
-				<input type='text' name='natural_attack_ailment'>
+			<div class='col1'>
+				<label>Name</label>
+					<input type='text' name='natural_attack_name'>
+				<label>Cost</label>
+					<input type='number' name='natural_attack_cost'min='1' max='50' step='1'>
+				<label>Hits</label>
+					<input type='number' name='natural_attack_hits' min='1' max='10' step='1'>
+				</div>
+			<div class='col2'>
+				<label>Damage</label>
+					<input type='text' name='natural_attack_damage' placeholder='#d#'>
+				<label>Critical</label>
+					<input type='number' name='natural_attack_critical' max='12' min='0' step='1'>
+				<label>Ailment</label>
+					<input type='text' name='natural_attack_ailment'>
+			</div>
 			<label>Description</label>
 				<textarea name='natural_attack_description'></textarea>
+			<a class='delete_x' href='#'>x</a>
 		</div>
-		<a href='#'>add another...</a>
+		<a href='#' id='natural_attack_add'>add another...</a>
 	</div>
+	<input type='submit' value="let's make this!">
 </form>
