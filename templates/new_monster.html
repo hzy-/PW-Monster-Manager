@@ -1,47 +1,101 @@
 <h2>New Monster</h2>
 <form id='new_monster_form' method='post' action='#'>
-	<label>Name</label>
-		<input type='text' name='name'>
+	<div class='col1'>
+		<label>Name</label>
+			<input type='text' name='name'>
+	</div>
+	<div class='col2'>
+		<label>Level</label>
+			<input name='level' type='number' max='100' min='0' step='1'>
+	</div>
 	<label>Description</label>
 		<textarea name='description'></textarea>
-	<label>Level</label>
-		<input name='level' type='number' max='100' min='0' step='1'>
-	<label>Hit Points</label>
-		<input name='hit_points' type='number' min='0' step='1'>
-	<label>Skill Points</label>
-		<input name='skill_points' type='number' min='0' step='1'>
+	<div class='col1'>
+		<label>Hit Points</label>
+			<input name='hit_points' type='number' min='0' step='1'>
+	</div>
+	<div class='col2'>
+		<label>Skill Points</label>
+			<input name='skill_points' type='number' min='0' step='1'>
+	</div>
 	<hr>
 
 	<div id='resistances_form'>
 		<h3>Resistances</h3>
-		<div class='resistance'>
-			<select name='resistance_attribute' value='Attribute'>
-				<option>Physical</option>
-				<option>Fire</option>
-				<option>Ice</option>
-				<option>Lightning</option>
-				<option>Wind</option>
-				<option>Light</option>
-				<option>Dark</option>
-			</select>
-			<select name='resistance_resistance' value='Resistance'>
-				<option>Weak</option>
-				<option>Resist</option>
-				<option>Null</option>
-				<option>Absorb</option>
-				<option>Reflect</option>
-				<option>N/A</option>
-			</select>
-			<a class='delete_x' href='#'>x</a>
+		<div class='col1'>
+			<label>Physical</label>
+				<select name='resistance.physical'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
+			<label>Fire</label>
+				<select name='resistance.fire'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
+			<label>Ice</label>
+				<select name='resistance.ice'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
+			<label>Lightning</label>
+				<select name='resistance.lightning'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
 		</div>
-		<a href='#' id='resistance_add'>add another...</a>
+		<div class='col2'>
+			<label>Wind</label>
+				<select name='resistance.wind'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
+			<label>Light</label>
+				<select name='resistance.light'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
+			<label>Dark</label>
+				<select name='resistance.dark'>
+					<option>-</option>
+					<option>Weak</option>
+					<option>Resist</option>
+					<option>Null</option>
+					<option>Absorb</option>
+					<option>Reflect</option>
+				</select>
+		</div>
 	</div>
 	<hr>
 
 	<div id='skills_form'>
 		<h3>Skills</h3>
 		<div class='skill'>
-			<input class='skill_input' type='text' name='skill'>
+			<input class='skill_input' type='text' name='skill[0]'>
 			<a class='delete_x' href='#'>x</a>
 		</div>
 		<a href='#' id='skill_add'>add another...</a>
@@ -53,25 +107,26 @@
 		<div class='natural_attack'>
 			<div class='col1'>
 				<label>Name</label>
-					<input type='text' name='natural_attack_name'>
+					<input type='text' name='natural_attack[0].name'>
 				<label>Cost</label>
-					<input type='number' name='natural_attack_cost'min='1' max='50' step='1'>
+					<input type='number' name='natural_attack[0].cost'min='1' max='50' step='1'>
 				<label>Hits</label>
-					<input type='number' name='natural_attack_hits' min='1' max='10' step='1'>
+					<input type='number' name='natural_attack[0].hits' min='1' max='10' step='1'>
 				</div>
 			<div class='col2'>
 				<label>Damage</label>
-					<input type='text' name='natural_attack_damage' placeholder='#d#'>
+					<input type='text' name='natural_attack[0].damage' placeholder='#d#'>
 				<label>Critical</label>
-					<input type='number' name='natural_attack_critical' max='12' min='0' step='1'>
+					<input type='number' name='natural_attack[0].critical' max='12' min='0' step='1'>
 				<label>Ailment</label>
-					<input type='text' name='natural_attack_ailment'>
+					<input type='text' name='natural_attack[0].ailment'>
 			</div>
 			<label>Description</label>
-				<textarea name='natural_attack_description'></textarea>
+				<textarea name='natural_attack[0].description'></textarea>
 			<a class='delete_x' href='#'>x</a>
 		</div>
 		<a href='#' id='natural_attack_add'>add another...</a>
 	</div>
+	<a href='#' id='submit_form'>submit but hopefully not break!</a>
 	<input type='submit' value="let's make this!">
 </form>

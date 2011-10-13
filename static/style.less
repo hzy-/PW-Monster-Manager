@@ -28,7 +28,10 @@ header {
 // new monster page
 #new_monster_form {
 	width: 700px;
-	margin: 0 auto;
+	margin: 0 auto;	
+	* {
+		width:100%;
+	}
 	input{
 		height:30px;
 		margin:0 0 5px 0;
@@ -40,6 +43,11 @@ header {
 	}
 	hr {
 		margin:40px 0 40px 0;
+	}
+	.col1, .col2 {
+		width:50% - 1px;
+		display:inline-block;
+		vertical-align:top;
 	}
 	a.delete_x {
 		color:#900;
@@ -55,12 +63,13 @@ header {
 		border-bottom:1px solid darken(@grey, 15%);
 		margin:0 0 20px 0;
 		padding:0 0 20px 0;
-		.col1, .col2 {
-			width:50% - 1px;
-			display:inline-block;
-			* {
-				width:100%;
-			}
-		}
+	}
+	input[type='submit']{
+		height:50px;
+		margin:30px 0 0 0;
+		font-size:18px;
+	}
+	.skill_input{
+		width:95%;
 	}
 }
