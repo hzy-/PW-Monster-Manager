@@ -65,7 +65,9 @@ def delete_monster(id):
 
 @post('/monsters/')
 def create_monster():
-	return 'hi'
+	return Monster_from_json(request.POST['json'])
+
+
 
 	
 
@@ -77,4 +79,4 @@ def login_form():
 	return r
 
 debug(True)
-run(host='localhost', port=8080, reloader=True)
+run(host='localhost', port=8082, reloader=True)

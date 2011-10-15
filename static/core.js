@@ -33,10 +33,10 @@
 
 				//lets get this id set
 				natural_attack_count ++;
-				$('natural_attack').filter(':last').children(':input').each(function() {
+				$('.natural_attack').filter(':last').children(':input').each(function() {
 					console.log('hi');
 					chunks = $(this).attr('name').split('.');
-					$(this).attr('name', 'natural_attack['+natural_attack_count+'].hithere.'+chunks[1]);
+					$(this).attr('name', 'natural_attack['+natural_attack_count+'].'+chunks[1]);
 				});
 			}
 
@@ -48,20 +48,13 @@ $(document).ready(function() {
 		// form submit function
 		//$('#new_monster_form').submit(function(){
 		$('#submit_form').click(function(){
-			//var natural_attacks = new Array();
-			//$('.natural_attack').each(function (i) {
-			//
-			//	$('input', this).each(function(){
-			//		key = $(this).attr('name');
-			//		value = $(this).bal();
-			//		natural_attacks[i][key] = value;
-			//	})
-			//})
-			//console.log(natural_attacks);
-			//alert(natural_attacks);
-			//return false;
-			var formData = $('#new_monster_form').toObject();
-			console.log(formData);
+			formData = $('#new_monster_form').toObject();
+			json = JSON.stringify(formData);
+			console.log(json);
+			$.post('/monsters/', {'json': json}, function(url) {
+//				document.location.href = url;
+				console.log(url);
+			});
 			return false;
 		})
 
